@@ -14,11 +14,27 @@
 \addbibresource{overview.bib}
 
 \mode<presentation>{%
-  \usetheme{Frankfurt}
+  \usetheme{Berlin}
   \setbeamercovered{transparent}
-  \usecolortheme{seagull}
+  %\usecolortheme{seagull}
 }
-\setbeamertemplate{footline}{\hfill\insertframenumber\hfill}
+\setbeamertemplate{footline}%{miniframes theme}
+{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+    \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+    \hfill%
+    {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    {\usebeamerfont{title in head/foot}\insertshorttitle} \hfill     \insertframenumber%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+  \end{beamercolorbox}
+}
 
 \title[Foundations]{%
   Foundations of Security
@@ -84,11 +100,11 @@
     \item Generally we look at failures of systems, these can be divided into 
       unintentional and intentional:
       \begin{itemize}
-        \item \emph{Unintensional failures} are \emph{reliability issues}.
+        \item \emph{Unintentional failures} are \emph{reliability issues}.
         \item \emph{Intentional failures} are \emph{security issues}.
       \end{itemize}
 
-    \item Note that unintensional failures can be \emph{exploited} for breaking 
+    \item Note that unintentional failures can be \emph{exploited} for breaking 
       our security policy---and hence are security issues, or \emph{threats}.
   \end{itemize}
 \end{frame}
