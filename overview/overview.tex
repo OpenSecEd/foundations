@@ -205,70 +205,80 @@
   \end{description}
 \end{frame}
 
-\begin{frame}{Confidentiality}
-  \begin{itemize}
-    \item Unauthorized \enquote{reading}.
+\begin{frame}
+  \begin{block}{Confidentiality}
+    \begin{itemize}
+      \item Unauthorized \enquote{reading}.
 
-    \item Think about what to hide: the content of a document, or the 
-      document's existence?
-  \end{itemize}
+      \item Think about what to hide: the content of a document, or the 
+        document's existence?
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Privacy}
-  \begin{itemize}
-    \item Privacy is related, but this concerns protection of personal 
-      information.
+\begin{frame}
+  \begin{block}{Privacy}
+    \begin{itemize}
+      \item Privacy is related, but this concerns protection of personal 
+        information.
 
-    \item The users should be in control of their data and of the information 
-      about their activities.
+      \item The users should be in control of their data and of the information 
+        about their activities.
 
-    \item Varying definitions.
-      
-    \item Sometimes used synonymously to confidentiality.
-  \end{itemize}
+      \item Varying definitions.
+
+      \item Sometimes used synonymously to confidentiality.
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Integrity}
-  \begin{itemize}
-    \item Unauthorized \enquote{writing}.
+\begin{frame}
+  \begin{block}{Integrity}
+    \begin{itemize}
+      \item Unauthorized \enquote{writing}.
 
-    \item Data integrity: \blockquote{The state that exists when computerized 
-        data is the same as that in the source document and has not been exposed 
-        to accidental or malicious alteration or destruction.}
+      \item Data integrity: \blockquote{The state that exists when computerized 
+          data is the same as that in the source document and has not been exposed 
+          to accidental or malicious alteration or destruction.}
 
-    \item Concerns detection and correction of intentional and unintentional 
-      modifications of data.
-  \end{itemize}
+      \item Concerns detection and correction of intentional and unintentional 
+        modifications of data.
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Integrity}
-  \begin{itemize}
-    \item Clark and Wilson:
-      \blockquote{No user of the system, even if authorized, may be permitted to 
-        modify data in such a way that assets or accounting records of the 
-        company are lost or corrupted.}
+\begin{frame}
+  \begin{block}{Integrity continued}
+    \begin{itemize}
+      \item Clark and Wilson:
+        \blockquote{No user of the system, even if authorized, may be permitted to 
+          modify data in such a way that assets or accounting records of the 
+          company are lost or corrupted.}
 
-    \item \Ie make sure that everything is as it is supposed to.
+      \item \Ie make sure that everything is as it is supposed to.
 
-    \item Integrity is a prerequisite to many other security services.
-  \end{itemize}
+      \item Integrity is a prerequisite to many other security services.
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Availability}
-  \begin{itemize}
-    \item This is the property of being \emph{available and usable} upon demand 
-      by an authorized principal.
+\begin{frame}
+  \begin{block}{Availability}
+    \begin{itemize}
+      \item This is the property of being \emph{available and usable} upon demand 
+        by an authorized principal.
 
-    \item Denial of Service (DoS) is an attack on availability which prevents 
-      authorized access to resources or the delaying of time-critical 
-      operations.
+      \item Denial of Service (DoS) is an attack on availability which prevents 
+        authorized access to resources or the delaying of time-critical 
+        operations.
 
-    \item A very important part of security, unfortunately not many methods for 
-      accomplishing this are available.
+      \item A very important part of security, unfortunately not many methods for 
+        accomplishing this are available.
 
-    \item Distributed Denial of Service (DDoS) gets much attention, this can 
-      also be seen as a reliability problem (unintentional).
-  \end{itemize}
+      \item Distributed Denial of Service (DDoS) gets much attention, this can 
+        also be seen as a reliability problem (unintentional).
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -318,8 +328,7 @@
     \item To make software more secure, it has to be tested against non-typical 
       usage patterns.
 
-    \item In fact, you can never be sure the software is secure by just testing 
-      --- you need to prove it secure.
+    \item Testing against non-typical usage patterns might be difficult.
   \end{itemize}
 \end{frame}
 
@@ -338,25 +347,25 @@
   \end{enumerate}
 \end{frame}
 
-\subsection{Focus and placement of control}
-
 \begin{frame}
-  \begin{itemize}
-    \item Focus of control may be on data, operations, or users.
+  \begin{block}{Focus and placement of control}
+    \begin{itemize}
+      \item Focus of control may be on data, operations, or users.
 
-    \item If we look at the control of integrity, its requirements may refer to 
-      rules on:
-      \begin{itemize}
-        \item Format and content of data items, \eg account balance must be 
-          integer.
+      \item If we look at the control of integrity, its requirements may refer to 
+        rules on:
+        \begin{itemize}
+          \item Format and content of data items, \eg account balance must be 
+            integer.
 
-        \item Operations that may be performed on a data item, \eg credit, debit 
-          and transfer.
+          \item Operations that may be performed on a data item, \eg credit, debit 
+            and transfer.
 
-        \item Users who are allowed access to a data item, \eg account holder 
-          and bank clerk.
-      \end{itemize}
-  \end{itemize}
+          \item Users who are allowed access to a data item, \eg account holder 
+            and bank clerk.
+        \end{itemize}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 %\begin{frame}
@@ -371,39 +380,38 @@
 %  \end{block}
 %\end{frame}
 
-
-\subsection{Complexity or Assurance}
-
 \begin{frame}
-  \begin{itemize}
-    \item Generic mechanisms are simple, applications are usually feature rich.
+  \begin{block}{Complexity or Assurance}
+    \begin{itemize}
+      \item Generic mechanisms are simple, applications are usually feature rich.
 
-    \item The fundamental dilemma:
-      \begin{itemize}
-        \item Simple generic mechanisms may not match specific security 
-          requirements.
+      \item The fundamental dilemma:
+        \begin{itemize}
+          \item Simple generic mechanisms may not match specific security 
+            requirements.
 
-        \item To choose the right features from a rich selection, you need to 
-          be a security expert.
+          \item To choose the right features from a rich selection, you need to 
+            be a security expert.
 
-        \item Security-unaware users are at a loss.
-      \end{itemize}
-  \end{itemize}
+          \item Security-unaware users are at a loss.
+        \end{itemize}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
-\subsection{Centralized or decentralized controls}
-
 \begin{frame}
-  \begin{itemize}
-    \item Within the domain of a security policy, the same controls should be 
-      enforced everywhere.
+  \begin{block}{Centralized or decentralized controls}
+    \begin{itemize}
+      \item Within the domain of a security policy, the same controls should be 
+        enforced everywhere.
 
-    \item Having a centralized entity to do this makes it easy to achieve 
-      uniformity, however, this entity may become a bottleneck.
+      \item Having a centralized entity to do this makes it easy to achieve 
+        uniformity, however, this entity may become a bottleneck.
 
-    \item A distributed solution might be more efficient, however, then you 
-      must ensure they all enforce consistently with each other.
-  \end{itemize}
+      \item A distributed solution might be more efficient, however, then you 
+        must ensure they all enforce consistently with each other.
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \subsection{The layer below}
@@ -451,7 +459,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[allowframebreaks]
-	\small
+  \small
   \printbibliography{}
 \end{frame}
 
