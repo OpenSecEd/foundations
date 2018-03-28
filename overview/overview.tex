@@ -4,10 +4,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[swedish,british]{babel}
+\usepackage{csquotes}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{keystroke}
+
+\usepackage[all]{foreign}
+\renewcommand{\foreignfullfont}{}
+\renewcommand{\foreignabbrfont}{}
 
 \setbeamertemplate{bibliography item}[text]
 \usepackage[natbib,style=alphabetic,maxbibnames=99]{biblatex}
@@ -36,8 +41,8 @@
   \end{beamercolorbox}
 }
 
-\title[Intro to Info Sec]{%
-  Introduction to Information Security
+\title[Foundations]{%
+  Foundations of Information Security
 }
 \author{Daniel Bosk}
 \institute[MIUN ICS]{%
@@ -82,24 +87,47 @@
 
 \section{What's this about?}
 
-\subsection{Security Strategies}
+\subsection{Security policy and strategies}
 
 \begin{frame}
   \begin{itemize}
     \item The main purpose of security is to protect assets.
 
-    \item In our \emph{(security) policy} we define what is to be accomplished, 
-      the goals, e.g.~who may access what asset and how.
+      \pause
 
-    \item We then have \emph{mechanisms} to help us enforce our policy, 
-      e.g.~cryptography.
+    \item We define our goals in a \emph{security policy}.
+    \item \Eg who may access what asset and how.
+
+      \pause
+
+    \item We then must enforce our policy.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
+  \begin{example}
+    \begin{itemize}
+      \item Asset: private photos.
+
+      \item Policy:
+        \begin{itemize}
+          \item Only I can access my photo collection.
+          \item I can share individual photos to individual persons.
+        \end{itemize}
+
+        \pause
+
+      \item Enforcement?
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\begin{frame}
   \begin{itemize}
-    \item Each of our mechanisms we can say is more or less \emph{trustworthy}:
-      A trustworthy mechanism will not break our security policy.
+    \item Each of our mechanisms we can say is more or less \emph{trustworthy}.
+    \item A trustworthy mechanism will not break our security policy.
+
+      \pause
 
     \item The aim of this course is to give you an idea of how to determine 
       what is a trustworthy mechanism.
@@ -107,19 +135,18 @@
 \end{frame}
 
 \begin{frame}
-  \begin{itemize}
-    \item Our protection strategies can be divided into the following:
-      \begin{itemize}
-        \item Prevention, taking measures that prevent your assets from being 
-          damaged.
+  \begin{block}{Protection strategies}
+    \begin{description}
+      \item[Prevention] taking measures that prevent your assets from being 
+        damaged.
 
-        \item Detection, taking measures that allow detection of when, how, and 
-          by who an asset has been damaged.
+      \item[Detection] taking measures that allow detection of when, how, and 
+        by who an asset has been damaged.
 
-        \item Reaction, taking measures that allow to recover assets or recover 
-          from damage to assets.
-      \end{itemize}
-  \end{itemize}
+      \item[Reaction] taking measures that allow to recover assets or recover 
+        from damage to assets.
+    \end{description}
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -132,22 +159,22 @@
     \end{description}
   \end{example}
 
-  \begin{example}[E-commerce]
+  \pause
+
+  \begin{example}[Private photos]
     \begin{description}
-      \item[Prevention] Encrypt orders, rely on merchants checking identities, 
-        \dots
-      \item[Detection] An unauthorised transaction appears on your bank 
-        statement, \dots
-      \item[Reaction] Complain to bank, ask for new card, \dots
+      \item[Prevention] Encrypt, store securely.
+      \item[Detection] Our photos have leaked.
+      \item[Reaction] Anything other than get angry?
     \end{description}
   \end{example}
 \end{frame}
 
-\subsection{Data and Information}
+\subsection{Data and information}
 
 \begin{frame}
   \begin{definition}[Data and information~\cite{hansen1973operating}]
-    [Data is the] Physical phenomena chosen by convention to represent certain 
+    [Data is the] [p]hysical phenomena chosen by convention to represent certain 
     aspects of of our conceptual and real world.
     \emph{The meanings we assign to data are called information.} [my emphasis]
     Data is used to transmit and store information and to derive new 
@@ -161,8 +188,8 @@
       \item \(x + 1 = 0\iff x = -1\): the two equations are data, we use the 
         formal rules of mathematics to derive the value of \(x\).
 
-      \item Timestamps of TCP packets with port set to 80 or 443, formal rules 
-        of statistical analysis.
+      \item Timestamps of TCP packets on the network with port set to 80 or 443, 
+        formal rules of statistical analysis.
     \end{itemize}
   \end{example}
 \end{frame}
@@ -171,23 +198,16 @@
 
 \begin{frame}
   \begin{description}
-    \item[Confidentiality] Concerns unauthorised disclosure of information.
-    \item[Integrity] Concerns unauthorised modification.
-    \item[Availability] Concerns unauthorised withholding of information or 
+    \item[Confidentiality] Concerns unauthorized disclosure of information.
+    \item[Integrity] Concerns unauthorized modification.
+    \item[Availability] Concerns unauthorized withholding of information or 
       resources.
-
-      \pause{}
-
-    \item[Authenticity] Concerns the identity of principals in systems.
-    \item[Accountability (non-repudiation)] Concerns proof that some principal 
-      was involved in some event.
-    \item[\dots]
   \end{description}
 \end{frame}
 
 \begin{frame}{Confidentiality}
   \begin{itemize}
-    \item Prevent unauthorised \emph{reading}.
+    \item Unauthorized \enquote{reading}.
 
     \item Think about what to hide: the content of a document, or the 
       document's existence?
@@ -196,23 +216,25 @@
 
 \begin{frame}{Privacy}
   \begin{itemize}
-    \item Privacy is different, this concerns protection of personal 
+    \item Privacy is related, but this concerns protection of personal 
       information.
 
     \item The users should be in control of their data and of the information 
       about their activities.
 
-    \item Varying definitions: also the right to be left alone.
+    \item Varying definitions.
+      
+    \item Sometimes used synonymously to confidentiality.
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Integrity}
   \begin{itemize}
-    \item Prevent unauthorised \emph{writing}.
+    \item Unauthorized \enquote{writing}.
 
-    \item Data integrity: \enquote{The state that exists when computerized data 
-        is the same as that in the source document and has not been exposed to 
-        accidental or malicious alteration or destruction.}
+    \item Data integrity: \blockquote{The state that exists when computerized 
+        data is the same as that in the source document and has not been exposed 
+        to accidental or malicious alteration or destruction.}
 
     \item Concerns detection and correction of intentional and unintentional 
       modifications of data.
@@ -222,11 +244,11 @@
 \begin{frame}{Integrity}
   \begin{itemize}
     \item Clark and Wilson:
-      ``No user of the system, even if authorized, may be permitted to modify 
-      data in such a way that assets or accounting records of the company are 
-      lost or corrupted.''
+      \blockquote{No user of the system, even if authorized, may be permitted to 
+        modify data in such a way that assets or accounting records of the 
+        company are lost or corrupted.}
 
-    \item I.e.~make sure that everything is as it is supposed to.
+    \item \Ie make sure that everything is as it is supposed to.
 
     \item Integrity is a prerequisite to many other security services.
   \end{itemize}
@@ -234,8 +256,8 @@
 
 \begin{frame}{Availability}
   \begin{itemize}
-    \item This is the property of being available and usable upon demand by an 
-      authorized principal.
+    \item This is the property of being \emph{available and usable} upon demand 
+      by an authorized principal.
 
     \item Denial of Service (DoS) is an attack on availability which prevents 
       authorized access to resources or the delaying of time-critical 
@@ -249,24 +271,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Availability}
-  \begin{example}[Smurf attack]
-    \begin{itemize}
-      \item Attacker sends ICMP echo request to a broadcast address with the 
-        victim's address as the spoofed sender address.
-
-      \item The echo request is distributed to all nodes in the broadcast 
-        range.
-
-      \item All nodes replies to the echo request, and the replies are sent to 
-        the victim -- the victim is flooded.
-
-      \item Depending on the size of the broadcast range, there is 
-        a considerable amplification.
-    \end{itemize}
-  \end{example}
-\end{frame}
-
 \begin{frame}
   \begin{example}[DDoS]
     \begin{itemize}
@@ -276,42 +280,6 @@
       \item No one can communicate with that address under that load.
     \end{itemize}
   \end{example}
-\end{frame}
-
-\begin{frame}{Non-Repudiation}
-  \begin{itemize}
-    \item \emph{Non-repudiation} concerns unforgeable evidence that a specific 
-      action has occurred.
-
-    \item \emph{Non-repudiation of origin}: protects against a sender of data 
-      denying data was sent.
-
-    \item \emph{Non-repudiation of delivery}: protects against a receiver 
-      denying data was received.
-
-    \item Note: what is meant my received?
-      E.g.~a mail delivered to your mailbox.
-
-    \item Also note that a simple audit log doesn't necessarily give 
-      non-repudiation, it might have been forged by the system administrator.
-
-    \item It's usually accomplished by using crypto.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Non-Repudiation}
-  \begin{itemize}
-    \item A commonly found definition: ``Non-repudiation provides irrefutable 
-      evidence about some event.''
-
-    \item Is anything ever irrefutable?
-
-    \item Non-repudiation generates mathematical evidence.
-
-    \item This does not necessarily mean it is accepted, e.g.~in court of law.
-
-    \item In Sweden, this is regulated in law SFS 2000:832 (among others).
-  \end{itemize}
 \end{frame}
 
 \subsection{Security and Reliability}
@@ -351,54 +319,14 @@
       usage patterns.
 
     \item In fact, you can never be sure the software is secure by just testing 
-      -- you need to prove it secure.
+      --- you need to prove it secure.
   \end{itemize}
 \end{frame}
 
 
-\section{Dilemmas of Security}
+\section{Principles of security}
 
-\subsection{The Fundamental Dilemma of Security}
-
-\begin{frame}
-  \begin{block}{Situation}
-    Security-unaware users have specific security requirements but no security 
-    expertise.
-  \end{block}
-
-  \begin{block}{Dilemma}
-    \begin{itemize}
-      \item If you provide them with a standard (\enquote{best-practice}) 
-        solution it might not meet their requirements.
-
-      \item If you want to tailor your solution to the users' needs, they may 
-        be unable to tell you what they require.
-
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsection{Another Dilemma of Security}
-
-\begin{frame}
-  \begin{itemize}
-    \item The other dilemma is the conflict between security and 
-      usability.
-      
-    \item Security mechanisms may need additional computational resources.
-
-    \item Security interferes with the ordinary working pattern which users are 
-      accustomed to.
-
-    \item Effort has to be put into managing security --- or we do security 
-      correct and aligned with usability!
-  \end{itemize}
-\end{frame}
-
-
-\section{Principles of Security}
-
-\subsection{Fundamental Design Decisions}
+\subsection{Fundamental design decisions}
 
 \begin{frame}
   \begin{enumerate}
@@ -410,7 +338,7 @@
   \end{enumerate}
 \end{frame}
 
-\subsection{Focus and Placement of Control}
+\subsection{Focus and placement of control}
 
 \begin{frame}
   \begin{itemize}
@@ -419,13 +347,13 @@
     \item If we look at the control of integrity, its requirements may refer to 
       rules on:
       \begin{itemize}
-        \item Format and content of data items, e.g.~account balance must be 
+        \item Format and content of data items, \eg account balance must be 
           integer.
 
-        \item Operations that may be performed on a data item, e.g.~credit, 
-          debit and transfer.
+        \item Operations that may be performed on a data item, \eg credit, debit 
+          and transfer.
 
-        \item Users who are allowed access to a data item, e.g.~account holder 
+        \item Users who are allowed access to a data item, \eg account holder 
           and bank clerk.
       \end{itemize}
   \end{itemize}
@@ -448,12 +376,9 @@
 
 \begin{frame}
   \begin{itemize}
-    \item Often the location of a security mechanism in the man--machine scale 
-      correlates with its complexity.
-
     \item Generic mechanisms are simple, applications are usually feature rich.
 
-    \item Back to the fundamental dilemma:
+    \item The fundamental dilemma:
       \begin{itemize}
         \item Simple generic mechanisms may not match specific security 
           requirements.
@@ -466,7 +391,7 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Centralized or Decentralized Controls}
+\subsection{Centralized or decentralized controls}
 
 \begin{frame}
   \begin{itemize}
@@ -481,7 +406,7 @@
   \end{itemize}
 \end{frame}
 
-\subsection{The Layer Below}
+\subsection{The layer below}
 
 \begin{frame}
   \begin{itemize}
