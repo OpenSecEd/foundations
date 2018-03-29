@@ -1,0 +1,527 @@
+\begin{frame}
+  \titlepage{}
+\end{frame}
+
+\begin{frame}
+	\tableofcontents
+	% You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+
+\section{What's this about?}
+
+\subsection{Security policy and strategies}
+
+\begin{frame}
+  \begin{itemize}
+    \item The main purpose of security is to protect assets.
+
+      \pause
+
+    \item We define our goals in a \emph{security policy}.
+    \item \Eg who may access what asset and how.
+
+      \pause
+
+    \item We then must enforce our policy.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{example}
+    \begin{itemize}
+      \item Asset: private photos.
+
+      \item Policy:
+        \begin{itemize}
+          \item Only I can access my photo collection.
+          \item I can share individual photos to individual persons.
+        \end{itemize}
+
+        \pause
+
+      \item Enforcement?
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Each of our mechanisms we can say is more or less \emph{trustworthy}.
+    \item A trustworthy mechanism will not break our security policy.
+
+      \pause
+
+    \item The aim of this course is to give you an idea of how to determine 
+      what is a trustworthy mechanism.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Protection strategies}
+    \begin{description}
+      \item[Prevention] taking measures that prevent your assets from being 
+        damaged.
+
+      \item[Detection] taking measures that allow detection of when, how, and 
+        by who an asset has been damaged.
+
+      \item[Reaction] taking measures that allow to recover assets or recover 
+        from damage to assets.
+    \end{description}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{example}[Private property]
+    \begin{description}
+      \item[Prevention] Locks on doors, window bars, surrounding walls, \dots
+      \item[Detection] Stolen items are missing, burglar alarms, video 
+        surveillance, \dots
+      \item[Reaction] Call the police, replace stolen items (insurance?), \dots
+    \end{description}
+  \end{example}
+
+  \pause
+
+  \begin{example}[Private photos]
+    \begin{description}
+      \item[Prevention] Encrypt, store securely.
+      \item[Detection] Our photos have leaked.
+      \item[Reaction] Anything other than get angry?
+    \end{description}
+  \end{example}
+\end{frame}
+
+\subsection{Data and information}
+
+\begin{frame}
+  \begin{definition}[Data and information~\cite{hansen1973operating}]
+    [Data is the] [p]hysical phenomena chosen by convention to represent certain 
+    aspects of of our conceptual and real world.
+    \emph{The meanings we assign to data are called information.} [my emphasis]
+    Data is used to transmit and store information and to derive new 
+    information by manipulating the data according to formal rules.
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{example}
+    \begin{itemize}
+      \item \(x + 1 = 0\iff x = -1\): the two equations are data, we use the 
+        formal rules of mathematics to derive the value of \(x\).
+
+      \item Timestamps of TCP packets on the network with port set to 80 or 443, 
+        formal rules of statistical analysis.
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\subsection{Security Objectives}
+
+\begin{frame}
+  \begin{description}
+    \item[Confidentiality] Concerns unauthorized disclosure of information.
+    \item[Integrity] Concerns unauthorized modification.
+    \item[Availability] Concerns unauthorized withholding of information or 
+      resources.
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Confidentiality}
+    \begin{itemize}
+      \item Unauthorized \enquote{reading}.
+
+      \item Think about what to hide: the content of a document, or the 
+        document's existence?
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Privacy}
+    \begin{itemize}
+      \item Privacy is related, but this concerns protection of personal 
+        information.
+
+      \item The users should be in control of their data and of the information 
+        about their activities.
+
+      \item Varying definitions.
+
+      \item Sometimes used synonymously to confidentiality.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Integrity}
+    \begin{itemize}
+      \item Unauthorized \enquote{writing}.
+
+      \item Data integrity: \blockquote{The state that exists when computerized 
+          data is the same as that in the source document and has not been exposed 
+          to accidental or malicious alteration or destruction.}
+
+      \item Concerns detection and correction of intentional and unintentional 
+        modifications of data.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Integrity continued}
+    \begin{itemize}
+      \item Clark and Wilson:
+        \blockquote{No user of the system, even if authorized, may be permitted to 
+          modify data in such a way that assets or accounting records of the 
+          company are lost or corrupted.}
+
+      \item \Ie make sure that everything is as it is supposed to.
+
+      \item Integrity is a prerequisite to many other security services.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Availability}
+    \begin{itemize}
+      \item This is the property of being \emph{available and usable} upon demand 
+        by an authorized principal.
+
+      \item Denial of Service (DoS) is an attack on availability which prevents 
+        authorized access to resources or the delaying of time-critical 
+        operations.
+
+      \item A very important part of security, unfortunately not many methods for 
+        accomplishing this are available.
+
+      \item Distributed Denial of Service (DDoS) gets much attention, this can 
+        also be seen as a reliability problem (unintentional).
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{example}[DDoS]
+    \begin{itemize}
+      \item Attackers infect \(x\cdot 10^5\) devices (smartphones, IoT-stuff) 
+        with malware.
+      \item Attackers commands all devices to send requests to a given address.
+      \item No one can communicate with that address under that load.
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\subsection{Security and Reliability}
+
+\begin{frame}
+  \begin{block}{Reliability}
+    \begin{itemize}
+      \item Reliability addresses the consequences of unintentional errors.
+
+      \item On a PC (offline), you are in control of the software components 
+        sending input to each other.
+
+      \item The aim is to avoid mistakes.
+    \end{itemize}
+  \end{block}
+
+  \pause{}
+
+  \begin{block}{Security}
+    \begin{itemize}
+      \item Once online, hostile adversaries can provide input.
+
+      \item Protection against mistakes is not enough --- they will ensure to 
+        make them for you.
+
+      \item And they will do things that you can never accomplish by mistake.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item To make software more reliable, it is tested against typical usage 
+      patterns.
+
+    \item To make software more secure, it has to be tested against non-typical 
+      usage patterns.
+
+    \item Testing against non-typical usage patterns might be difficult.
+  \end{itemize}
+\end{frame}
+
+
+\section{Principles of security}
+
+\subsection{Fundamental design decisions}
+
+\begin{frame}
+  \begin{enumerate}
+    \item Where to focus security controls?
+    \item Where to place security controls?
+    \item Complexity or assurance?
+    \item Centralised or decentralised control?
+    \item Blocking access to the layer below?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Focus and placement of control}
+    \begin{itemize}
+      \item Focus of control may be on data, operations, or users.
+
+      \item If we look at the control of integrity, its requirements may refer to 
+        rules on:
+        \begin{itemize}
+          \item Format and content of data items, \eg account balance must be 
+            integer.
+
+          \item Operations that may be performed on a data item, \eg credit, debit 
+            and transfer.
+
+          \item Users who are allowed access to a data item, \eg account holder 
+            and bank clerk.
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%\begin{frame}
+%  \begin{block}{Man-Machine Scale}
+%    \begin{itemize}
+%      \item Applications (focus on users, information)
+%      \item Services (middleware)
+%      \item Operating system
+%      \item Operating system kernel
+%      \item Hardware (focus on data, generic)
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
+
+\begin{frame}
+  \begin{block}{Complexity or Assurance}
+    \begin{itemize}
+      \item Generic mechanisms are simple, applications are usually feature rich.
+
+      \item The fundamental dilemma:
+        \begin{itemize}
+          \item Simple generic mechanisms may not match specific security 
+            requirements.
+
+          \item To choose the right features from a rich selection, you need to 
+            be a security expert.
+
+          \item Security-unaware users are at a loss.
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Centralized or decentralized controls}
+    \begin{itemize}
+      \item Within the domain of a security policy, the same controls should be 
+        enforced everywhere.
+
+      \item Having a centralized entity to do this makes it easy to achieve 
+        uniformity, however, this entity may become a bottleneck.
+
+      \item A distributed solution might be more efficient, however, then you 
+        must ensure they all enforce consistently with each other.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{The layer below}
+
+\begin{frame}
+  \begin{itemize}
+    \item Every security mechanism defines a \emph{security perimeter}.
+
+    \item The parts of a system which can malfunction without breaking the 
+      mechanism are said to be outside the perimeter.
+
+    \item The parts of the system that can disable the mechanism are within the 
+      perimeter.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Attackers will try to bypass security mechanisms.
+
+    \item How do you ensure an attacker cannot get access to the layer below 
+      the security mechanism?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item Recovery tools, read the sectors directly from the disk; logical 
+      access control is implemented in the operating system.
+
+    \item Buffer overruns, a value assigned to a variable is too large for the 
+      memory buffer allocated; memory allocated for other variables may be 
+      overwritten.
+
+    \item Side-channel analysis, look at the time different operations take to 
+      perform, look at power consumption.
+
+    \item JavaScript to perform security checks?
+      The client can use a Web page without JavaScript enabled.
+
+  \end{itemize}
+\end{frame}
+
+
+\section{The scientific method}
+
+\subsection{Deduction}
+
+\begin{frame}
+  \begin{itemize}
+    \item We have two major schools of gaining new knowledge: deduction and 
+      induction.
+    \item Both are used, but have different strengths and weaknesses.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}[Deduction]
+    \begin{itemize}
+      \item This stems from logic and mathematics.
+      \item State axioms.
+      \item Use the axioms and formal rules (logic) to infer knowledge.
+    \end{itemize}
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{example}[System and adversarial model]
+    \begin{itemize}
+      \item The system model captures the core properties of the system.
+      \item The adversary model captures the capabilities of the adversary 
+        attacking the system.
+      \item We use these models as axioms and try to show security deductively.
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \begin{remark}
+    \begin{itemize}
+      \item Cryptography is the area which uses most stringently the deductive 
+        method.
+      \item In many areas of security it is not possible use the full strict 
+        formalism required in maths.
+      \item To do deduction one needs simple building blocks with few 
+        properties.
+      \item Thus, in many papers, it's informal, rather than, formal arguments 
+        in the deduction.
+      \item And occasionally, we find vulnerabilities.
+    \end{itemize}
+  \end{remark}
+\end{frame}
+
+\begin{frame}
+  \begin{remark}
+    \begin{itemize}
+      \item Cryptography with it's perfect deduction isn't problem free either.
+      \item The axioms must match the real world, which is hard.
+      \item Sometimes things are over-simplified.
+    \end{itemize}
+  \end{remark}
+\end{frame}
+
+\subsection{Induction}
+
+\begin{frame}
+  \begin{definition}[Induction, hypothesis testing]
+    \begin{enumerate}
+      \item\label{FormHypothesis} Form hypothesis.
+      \item Perform experiment and collect data.
+      \item Analyse data.
+      \item Interpret data and draw conclusion.
+      \item Depending on conclusions, return to~\ref{FormHypothesis}.
+    \end{enumerate}
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{remark}
+    \begin{itemize}
+      \item There are requirements on the induction process.
+      \item The experiment must test a hypothesis which is both \emph{testable} 
+        and \emph{falsifiable}.
+      \item The experiment must have exactly \emph{one variable}.
+      \item The experiment must be \emph{reproducible} and \emph{results 
+          repeatable}.
+    \end{itemize}
+  \end{remark}
+\end{frame}
+
+\begin{frame}
+  \begin{example}[Testable and falsifiable]
+    \begin{itemize}
+      \item Implies observability and measurability.
+      \item Hypothesis: Prayer increases contact with one's deity.
+      \item Not falsifiable: We cannot observe divine communication, no 
+        experiment could prove the result wrong.
+    \end{itemize}
+  \end{example}
+
+  \pause
+
+  \begin{example}[Testable and falsifiable]
+    \begin{itemize}
+      \item Hypothesis: This software is secure.
+      \item Not measurable: What is secure?
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\subsection{Quantitative and qualitative methods}
+
+\begin{frame}
+  \begin{definition}[Quantitative methods]
+    \begin{itemize}
+      \item Explores quantitative relationships.
+      \item Here it might be difficult to isolate single variables.
+      \item \Eg when studying humans.
+    \end{itemize}
+  \end{definition}
+
+  \begin{definition}[Qualitative methods]
+    \begin{itemize}
+      \item Doesn't use quantitative methods such as statistics.
+      \item Used to explore phenomena in-depth.
+      \item Especially useful for finding direction in usability research.
+    \end{itemize}
+  \end{definition}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]
+  \small
+  \printbibliography{}
+\end{frame}
+

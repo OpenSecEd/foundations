@@ -1,9 +1,9 @@
 .PHONY: all
 all: overview.pdf
 
-SRC=			overview.tex abstract.tex overview.bib
+SRC=			preamble.tex abstract.tex contents.tex overview.bib
 
-foundations.pdf: ${SRC}
+overview.pdf: overview.tex ${SRC}
 
 
 INCLUDE_MAKEFILES=../makefiles
