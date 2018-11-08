@@ -1,17 +1,7 @@
 % $Id$
 %\documentclass[handout]{beamer}
 \documentclass{beamer}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[swedish,british]{babel}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{keystroke}
-
-\setbeamertemplate{bibliography item}[text]
-\usepackage[natbib,style=alphabetic,maxbibnames=99]{biblatex}
-\addbibresource{overview.bib}
+\input{preamble.tex}
 
 \mode<presentation>{%
   \usetheme{Berlin}
@@ -35,9 +25,76 @@
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
   \end{beamercolorbox}
 }
+\setbeamertemplate{bibliography item}[text]
 
-\title[Intro to Info Sec]{%
-  Introduction to Information Security
+\ProvideDocumentEnvironment{assumption}{o}{%
+  \IfValueTF{#1}{%
+    \begin{block}{Assumption: #1}
+  }{%
+    \begin{block}{Assumption}
+  }
+}{%
+  \end{block}
+}
+
+\ProvideDocumentEnvironment{protocol}{o}{%
+  \IfValueTF{#1}{%
+    \begin{block}{Protocol: #1}
+  }{%
+    \begin{block}{Protocol}
+  }
+}{%
+  \end{block}
+}
+
+\ProvideDocumentEnvironment{remark}{o}{%
+  \IfValueTF{#1}{%
+    \begin{alertblock}{Note: #1}
+  }{%
+    \begin{alertblock}{Note}
+  }
+}{%
+  \end{alertblock}
+}
+
+\ProvideDocumentEnvironment{idea}{o}{%
+  \IfValueTF{#1}{%
+    \begin{block}{Idea: #1}
+  }{%
+    \begin{block}{Idea}
+  }
+}{%
+  \end{block}
+}
+
+\ProvideDocumentEnvironment{question}{o}{%
+  \setbeamercolor{block body}{bg=orange!15,fg=black}
+  \setbeamercolor{block title}{bg=orange,fg=white}
+  \setbeamercolor{local structure}{fg=orange}
+  \IfValueTF{#1}{%
+    \begin{block}{Question: #1}
+  }{%
+    \begin{block}{Question}
+  }
+}{%
+  \end{block}
+}
+
+\ProvideDocumentEnvironment{exercise}{o}{%
+  \setbeamercolor{block body}{bg=yellow!10,fg=black}
+  \setbeamercolor{block title}{bg=yellow,fg=black}
+  \setbeamercolor{local structure}{fg=yellow}
+  \IfValueTF{#1}{%
+    \begin{block}{Exercise: #1}
+  }{%
+    \begin{block}{Exercise}
+  }
+}{%
+  \end{block}
+}
+
+\title[Foundations]{%
+  Foundations of Information Security
 }
 \author{Daniel Bosk}
 \institute[MIUN ICS]{%
@@ -58,477 +115,6 @@
 }
 
 \begin{document}
-
-\begin{frame}
-  \titlepage{}
-\end{frame}
-
-\begin{frame}
-	\tableofcontents
-	% You might wish to add the option [pausesections]
-\end{frame}
-
-
-% Since this a solution template for a generic talk, very little can
-% be said about how it should be structured. However, the talk length
-% of between 15min and 45min and the theme suggest that you stick to
-% the following rules:  
-
-% - Exactly two or three sections (other than the summary).
-% - At *most* three subsections per section.
-% - Talk about 30s to 2min per frame. So there should be between about
-%   15 and 30 frames, all told.
-
-
-\section{What's this about?}
-
-\subsection{Security Strategies}
-
-\begin{frame}
-  \begin{itemize}
-    \item The main purpose of security is to protect assets.
-
-    \item In our \emph{(security) policy} we define what is to be accomplished, 
-      the goals, e.g.~who may access what asset and how.
-
-    \item We then have \emph{mechanisms} to help us enforce our policy, 
-      e.g.~cryptography.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item Each of our mechanisms we can say is more or less \emph{trustworthy}:
-      A trustworthy mechanism will not break our security policy.
-
-    \item The aim of this course is to give you an idea of how to determine 
-      what is a trustworthy mechanism.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item Our protection strategies can be divided into the following:
-      \begin{itemize}
-        \item Prevention, taking measures that prevent your assets from being 
-          damaged.
-
-        \item Detection, taking measures that allow detection of when, how, and 
-          by who an asset has been damaged.
-
-        \item Reaction, taking measures that allow to recover assets or recover 
-          from damage to assets.
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{example}[Private property]
-    \begin{description}
-      \item[Prevention] Locks on doors, window bars, surrounding walls, \dots
-      \item[Detection] Stolen items are missing, burglar alarms, video 
-        surveillance, \dots
-      \item[Reaction] Call the police, replace stolen items (insurance?), \dots
-    \end{description}
-  \end{example}
-
-  \begin{example}[E-commerce]
-    \begin{description}
-      \item[Prevention] Encrypt orders, rely on merchants checking identities, 
-        \dots
-      \item[Detection] An unauthorised transaction appears on your bank 
-        statement, \dots
-      \item[Reaction] Complain to bank, ask for new card, \dots
-    \end{description}
-  \end{example}
-\end{frame}
-
-\subsection{Data and Information}
-
-\begin{frame}
-  \begin{definition}[Data and information~\cite{hansen1973operating}]
-    [Data is the] Physical phenomena chosen by convention to represent certain 
-    aspects of of our conceptual and real world.
-    \emph{The meanings we assign to data are called information.} [my emphasis]
-    Data is used to transmit and store information and to derive new 
-    information by manipulating the data according to formal rules.
-  \end{definition}
-\end{frame}
-
-\begin{frame}
-  \begin{example}
-    \begin{itemize}
-      \item \(x + 1 = 0\iff x = -1\): the two equations are data, we use the 
-        formal rules of mathematics to derive the value of \(x\).
-
-      \item Timestamps of TCP packets with port set to 80 or 443, formal rules 
-        of statistical analysis.
-    \end{itemize}
-  \end{example}
-\end{frame}
-
-\subsection{Security Objectives}
-
-\begin{frame}
-  \begin{description}
-    \item[Confidentiality] Concerns unauthorised disclosure of information.
-    \item[Integrity] Concerns unauthorised modification.
-    \item[Availability] Concerns unauthorised withholding of information or 
-      resources.
-
-      \pause{}
-
-    \item[Authenticity] Concerns the identity of principals in systems.
-    \item[Accountability (non-repudiation)] Concerns proof that some principal 
-      was involved in some event.
-    \item[\dots]
-  \end{description}
-\end{frame}
-
-\begin{frame}{Confidentiality}
-  \begin{itemize}
-    \item Prevent unauthorised \emph{reading}.
-
-    \item Think about what to hide: the content of a document, or the 
-      document's existence?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Privacy}
-  \begin{itemize}
-    \item Privacy is different, this concerns protection of personal 
-      information.
-
-    \item The users should be in control of their data and of the information 
-      about their activities.
-
-    \item Varying definitions: also the right to be left alone.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Integrity}
-  \begin{itemize}
-    \item Prevent unauthorised \emph{writing}.
-
-    \item Data integrity: \enquote{The state that exists when computerized data 
-        is the same as that in the source document and has not been exposed to 
-        accidental or malicious alteration or destruction.}
-
-    \item Concerns detection and correction of intentional and unintentional 
-      modifications of data.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Integrity}
-  \begin{itemize}
-    \item Clark and Wilson:
-      ``No user of the system, even if authorized, may be permitted to modify 
-      data in such a way that assets or accounting records of the company are 
-      lost or corrupted.''
-
-    \item I.e.~make sure that everything is as it is supposed to.
-
-    \item Integrity is a prerequisite to many other security services.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Availability}
-  \begin{itemize}
-    \item This is the property of being available and usable upon demand by an 
-      authorized principal.
-
-    \item Denial of Service (DoS) is an attack on availability which prevents 
-      authorized access to resources or the delaying of time-critical 
-      operations.
-
-    \item A very important part of security, unfortunately not many methods for 
-      accomplishing this are available.
-
-    \item Distributed Denial of Service (DDoS) gets much attention, this can 
-      also be seen as a reliability problem (unintentional).
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Availability}
-  \begin{example}[Smurf attack]
-    \begin{itemize}
-      \item Attacker sends ICMP echo request to a broadcast address with the 
-        victim's address as the spoofed sender address.
-
-      \item The echo request is distributed to all nodes in the broadcast 
-        range.
-
-      \item All nodes replies to the echo request, and the replies are sent to 
-        the victim -- the victim is flooded.
-
-      \item Depending on the size of the broadcast range, there is 
-        a considerable amplification.
-    \end{itemize}
-  \end{example}
-\end{frame}
-
-\begin{frame}
-  \begin{example}[DDoS]
-    \begin{itemize}
-      \item Attackers infect \(x\cdot 10^5\) devices (smartphones, IoT-stuff) 
-        with malware.
-      \item Attackers commands all devices to send requests to a given address.
-      \item No one can communicate with that address under that load.
-    \end{itemize}
-  \end{example}
-\end{frame}
-
-\begin{frame}{Non-Repudiation}
-  \begin{itemize}
-    \item \emph{Non-repudiation} concerns unforgeable evidence that a specific 
-      action has occurred.
-
-    \item \emph{Non-repudiation of origin}: protects against a sender of data 
-      denying data was sent.
-
-    \item \emph{Non-repudiation of delivery}: protects against a receiver 
-      denying data was received.
-
-    \item Note: what is meant my received?
-      E.g.~a mail delivered to your mailbox.
-
-    \item Also note that a simple audit log doesn't necessarily give 
-      non-repudiation, it might have been forged by the system administrator.
-
-    \item It's usually accomplished by using crypto.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Non-Repudiation}
-  \begin{itemize}
-    \item A commonly found definition: ``Non-repudiation provides irrefutable 
-      evidence about some event.''
-
-    \item Is anything ever irrefutable?
-
-    \item Non-repudiation generates mathematical evidence.
-
-    \item This does not necessarily mean it is accepted, e.g.~in court of law.
-
-    \item In Sweden, this is regulated in law SFS 2000:832 (among others).
-  \end{itemize}
-\end{frame}
-
-\subsection{Security and Reliability}
-
-\begin{frame}
-  \begin{block}{Reliability}
-    \begin{itemize}
-      \item Reliability addresses the consequences of unintentional errors.
-
-      \item On a PC (offline), you are in control of the software components 
-        sending input to each other.
-
-      \item The aim is to avoid mistakes.
-    \end{itemize}
-  \end{block}
-
-  \pause{}
-
-  \begin{block}{Security}
-    \begin{itemize}
-      \item Once online, hostile adversaries can provide input.
-
-      \item Protection against mistakes is not enough --- they will ensure to 
-        make them for you.
-
-      \item And they will do things that you can never accomplish by mistake.
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item To make software more reliable, it is tested against typical usage 
-      patterns.
-
-    \item To make software more secure, it has to be tested against non-typical 
-      usage patterns.
-
-    \item In fact, you can never be sure the software is secure by just testing 
-      -- you need to prove it secure.
-  \end{itemize}
-\end{frame}
-
-
-\section{Dilemmas of Security}
-
-\subsection{The Fundamental Dilemma of Security}
-
-\begin{frame}
-  \begin{block}{Situation}
-    Security-unaware users have specific security requirements but no security 
-    expertise.
-  \end{block}
-
-  \begin{block}{Dilemma}
-    \begin{itemize}
-      \item If you provide them with a standard (\enquote{best-practice}) 
-        solution it might not meet their requirements.
-
-      \item If you want to tailor your solution to the users' needs, they may 
-        be unable to tell you what they require.
-
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsection{Another Dilemma of Security}
-
-\begin{frame}
-  \begin{itemize}
-    \item The other dilemma is the conflict between security and 
-      usability.
-      
-    \item Security mechanisms may need additional computational resources.
-
-    \item Security interferes with the ordinary working pattern which users are 
-      accustomed to.
-
-    \item Effort has to be put into managing security --- or we do security 
-      correct and aligned with usability!
-  \end{itemize}
-\end{frame}
-
-
-\section{Principles of Security}
-
-\subsection{Fundamental Design Decisions}
-
-\begin{frame}
-  \begin{enumerate}
-    \item Where to focus security controls?
-    \item Where to place security controls?
-    \item Complexity or assurance?
-    \item Centralised or decentralised control?
-    \item Blocking access to the layer below?
-  \end{enumerate}
-\end{frame}
-
-\subsection{Focus and Placement of Control}
-
-\begin{frame}
-  \begin{itemize}
-    \item Focus of control may be on data, operations, or users.
-
-    \item If we look at the control of integrity, its requirements may refer to 
-      rules on:
-      \begin{itemize}
-        \item Format and content of data items, e.g.~account balance must be 
-          integer.
-
-        \item Operations that may be performed on a data item, e.g.~credit, 
-          debit and transfer.
-
-        \item Users who are allowed access to a data item, e.g.~account holder 
-          and bank clerk.
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-%\begin{frame}
-%  \begin{block}{Man-Machine Scale}
-%    \begin{itemize}
-%      \item Applications (focus on users, information)
-%      \item Services (middleware)
-%      \item Operating system
-%      \item Operating system kernel
-%      \item Hardware (focus on data, generic)
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
-
-
-\subsection{Complexity or Assurance}
-
-\begin{frame}
-  \begin{itemize}
-    \item Often the location of a security mechanism in the man--machine scale 
-      correlates with its complexity.
-
-    \item Generic mechanisms are simple, applications are usually feature rich.
-
-    \item Back to the fundamental dilemma:
-      \begin{itemize}
-        \item Simple generic mechanisms may not match specific security 
-          requirements.
-
-        \item To choose the right features from a rich selection, you need to 
-          be a security expert.
-
-        \item Security-unaware users are at a loss.
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection{Centralized or Decentralized Controls}
-
-\begin{frame}
-  \begin{itemize}
-    \item Within the domain of a security policy, the same controls should be 
-      enforced everywhere.
-
-    \item Having a centralized entity to do this makes it easy to achieve 
-      uniformity, however, this entity may become a bottleneck.
-
-    \item A distributed solution might be more efficient, however, then you 
-      must ensure they all enforce consistently with each other.
-  \end{itemize}
-\end{frame}
-
-\subsection{The Layer Below}
-
-\begin{frame}
-  \begin{itemize}
-    \item Every security mechanism defines a \emph{security perimeter}.
-
-    \item The parts of a system which can malfunction without breaking the 
-      mechanism are said to be outside the perimeter.
-
-    \item The parts of the system that can disable the mechanism are within the 
-      perimeter.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item Attackers will try to bypass security mechanisms.
-
-    \item How do you ensure an attacker cannot get access to the layer below 
-      the security mechanism?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item Recovery tools, read the sectors directly from the disk; logical 
-      access control is implemented in the operating system.
-
-    \item Buffer overruns, a value assigned to a variable is too large for the 
-      memory buffer allocated; memory allocated for other variables may be 
-      overwritten.
-
-    \item Side-channel analysis, look at the time different operations take to 
-      perform, look at power consumption.
-
-    \item JavaScript to perform security checks?
-      The client can use a Web page without JavaScript enabled.
-
-  \end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[allowframebreaks]
-	\small
-  \printbibliography{}
-\end{frame}
-
+\input{contents.tex}
 \end{document}
 
