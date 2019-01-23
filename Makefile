@@ -1,4 +1,4 @@
-SUBDIR= 	./overview
+SUBDIR= 	overview
 
 
 INCLUDE_MAKEFILES=makefiles
