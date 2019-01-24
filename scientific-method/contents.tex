@@ -57,9 +57,39 @@
 \begin{frame}
   \begin{example}[A simple model]
     \begin{itemize}
-      \item \dots
+      \item There is a channel through which to communicate with Alice.
+      \item Alice does not know who is on the other end.
+      \item The adversary cannot eavesdrop on the channel and is 
+        computationally limited\footnote{\Ie a polynomial-time Turing 
+          machine.}.
     \end{itemize}
   \end{example}
+
+  \begin{example}[Security properties]
+    \begin{itemize}
+      \item Alice believes she is talking to Bob \emph{if and only if} she is 
+        in fact talking to Bob.
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \begin{example}[Password-based authentication]
+    \begin{itemize}
+      \item Bob says (through the channel): \enquote{Hey, it's me, Bob!}.
+      \item Alice replies: \enquote{Prove it!}.
+      \item Bob says: \enquote{My password is p4ssw0rd}.
+    \end{itemize}
+  \end{example}
+
+  \pause
+
+  \begin{question}
+    \begin{enumerate}
+      \item Is this protocol secure in our model?
+      \item Is this protocol secure in reality? (\Ie is it a good model?)
+    \end{enumerate}
+  \end{question}
 \end{frame}
 
 \begin{frame}
