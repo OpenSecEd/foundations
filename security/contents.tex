@@ -9,9 +9,51 @@
 %   15 and 30 frames, all told.
 
 
-\section{What's this about?}
+\section{What's security about?}
 
-\subsection{Security policy and strategies}
+\subsection{Security and Reliability}
+
+\begin{frame}
+  \begin{block}{Reliability}
+    \begin{itemize}
+      \item Reliability addresses the consequences of unintentional errors.
+
+      \item On a PC (offline), you are in control of the software components 
+        sending input to each other.
+
+      \item The aim is to avoid mistakes.
+    \end{itemize}
+  \end{block}
+
+  \pause{}
+
+  \begin{block}{Security}
+    \begin{itemize}
+      \item Once online, hostile adversaries can provide input.
+
+      \item Protection against mistakes is not enough --- they will ensure to 
+        make them for you.
+
+      \item And they will do things that you can never accomplish by mistake.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{itemize}
+    \item To make software more reliable, it is tested against typical usage 
+      patterns.
+
+    \item To make software more secure, it has to be tested against non-typical 
+      usage patterns.
+
+    \item Testing against non-typical usage patterns might be difficult.
+
+    \item Think before you do \dots
+  \end{itemize}
+\end{frame}
+
+\subsection{Security policy}
 
 \begin{frame}
   \begin{itemize}
@@ -48,15 +90,14 @@
 
 \begin{frame}
   \begin{itemize}
-    \item Each of our mechanisms we can say is more or less \emph{trustworthy}.
-    \item A trustworthy mechanism will not break our security policy.
-
-      \pause
-
-    \item The aim of this course is to give you an idea of how to determine 
-      what is a trustworthy mechanism.
+    \item Each of our mechanisms is more or less \emph{trustworthy}.
+    \item A trustworthy mechanism \emph{will not break} our security policy.
+    \item A trusted mechanism \emph{is trusted} to not break, but actually 
+      might break.
   \end{itemize}
 \end{frame}
+
+\subsection{Protection strategies}
 
 \begin{frame}
   \begin{block}{Protection strategies}
@@ -94,31 +135,7 @@
   \end{example}
 \end{frame}
 
-\subsection{Data and information}
-
-\begin{frame}
-  \begin{definition}[Data and information~\cite{hansen1973operating}]
-    [Data is the] [p]hysical phenomena chosen by convention to represent certain 
-    aspects of of our conceptual and real world.
-    \emph{The meanings we assign to data are called information.} [my emphasis]
-    Data is used to transmit and store information and to derive new 
-    information by manipulating the data according to formal rules.
-  \end{definition}
-\end{frame}
-
-\begin{frame}
-  \begin{example}
-    \begin{itemize}
-      \item \(x + 1 = 0\iff x = -1\): the two equations are data, we use the 
-        formal rules of mathematics to derive the value of \(x\).
-
-      \item Timestamps of TCP packets on the network with port set to 80 or 443, 
-        formal rules of statistical analysis.
-    \end{itemize}
-  \end{example}
-\end{frame}
-
-\subsection{Security Objectives}
+\subsection{Security objectives}
 
 \begin{frame}
   \begin{description}
@@ -130,28 +147,41 @@
 \end{frame}
 
 \begin{frame}
+  \begin{definition}[Data and information]
+    \textcquote{hansen1973operating}[.]{%
+      \textins{Data is the} \textins*{p}hysical phenomena chosen by convention 
+      to represent certain aspects of of our conceptual and real world.
+      \emph{The meanings we assign to data are called information.} \textins{My 
+        emphasis.}
+      Data is used to transmit and store information and to derive new 
+      information by manipulating the data according to formal rules%
+    }
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{example}
+    \begin{itemize}
+      \item \(x + 1 = 0\iff x = -1\): the two equations are data, we use the 
+        formal rules of linear equations to derive the value of \(x\).
+    \end{itemize}
+  \end{example}
+
+  \begin{example}
+    \begin{itemize}
+      \item Timestamps of TCP packets on the network with port set to 80 or 443, 
+        formal rules of statistical analysis.
+    \end{itemize}
+  \end{example}
+\end{frame}
+
+\begin{frame}
   \begin{block}{Confidentiality}
     \begin{itemize}
       \item Unauthorized \enquote{reading}.
 
       \item Think about what to hide: the content of a document, or the 
         document's existence?
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \begin{block}{Privacy}
-    \begin{itemize}
-      \item Privacy is related, but this concerns protection of personal 
-        information.
-
-      \item The users should be in control of their data and of the information 
-        about their activities.
-
-      \item Varying definitions.
-
-      \item Sometimes used synonymously to confidentiality.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -196,11 +226,8 @@
         authorized access to resources or the delaying of time-critical 
         operations.
 
-      \item A very important part of security, unfortunately not many methods for 
-        accomplishing this are available.
-
       \item Distributed Denial of Service (DDoS) gets much attention, this can 
-        also be seen as a reliability problem (unintentional).
+        also caused by reliability problems (unintentional).
     \end{itemize}
   \end{block}
 \end{frame}
@@ -214,46 +241,6 @@
       \item No one can communicate with that address under that load.
     \end{itemize}
   \end{example}
-\end{frame}
-
-\subsection{Security and Reliability}
-
-\begin{frame}
-  \begin{block}{Reliability}
-    \begin{itemize}
-      \item Reliability addresses the consequences of unintentional errors.
-
-      \item On a PC (offline), you are in control of the software components 
-        sending input to each other.
-
-      \item The aim is to avoid mistakes.
-    \end{itemize}
-  \end{block}
-
-  \pause{}
-
-  \begin{block}{Security}
-    \begin{itemize}
-      \item Once online, hostile adversaries can provide input.
-
-      \item Protection against mistakes is not enough --- they will ensure to 
-        make them for you.
-
-      \item And they will do things that you can never accomplish by mistake.
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \begin{itemize}
-    \item To make software more reliable, it is tested against typical usage 
-      patterns.
-
-    \item To make software more secure, it has to be tested against non-typical 
-      usage patterns.
-
-    \item Testing against non-typical usage patterns might be difficult.
-  \end{itemize}
 \end{frame}
 
 
