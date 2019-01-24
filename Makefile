@@ -1,4 +1,6 @@
-SUBDIR= 	overview
+SUBDIR+= 	security
+SUBDIR+= 	principles
+SUBDIR+= 	scientific-method
 
 
 INCLUDE_MAKEFILES=makefiles
