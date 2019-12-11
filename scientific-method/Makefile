@@ -10,7 +10,8 @@ scientific-method.pdf: scientific-method.tex ${SRC}
 all: README.md
 
 README.md: video.md reading.md
-	${CAT} $^ > $@
+	echo "# The scientific method" > $@
+	${CAT} $^ >> $@
 
 reading.md: abstract.tex
 	pandoc -s -t markdown_strict \

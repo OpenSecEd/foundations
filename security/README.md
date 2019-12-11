@@ -1,3 +1,4 @@
+# What is security?
 [![Video: What is 
 security?](https://img.youtube.com/vi/sem0Pl-wZLQ/hqdefault.jpg) 
 ](https://youtu.be/sem0Pl-wZLQ)
@@ -11,13 +12,16 @@ security work.
 
 -   to *understand* the what security is generally about.
 
-*Reading:* You should read Gollmann’s chapter on “Foundations of
-Computer Security” (Gollmann 2011 Chap. 3). There he attempts at a
-definition of Computer Security and related terms, confidentiality,
-integrity, and availability, which we need for our treatment of the
-topic. Anderson also covers this in Chapter 1 of (Anderson 2008). He
-also treats a wider area than just *computer* security, which is good
-for us, he covers many aspects of security in different examples.
+*Reading:* You should read
+
+-   Chapter 3, “Foundations of Computer Security” of (Gollmann 2011).
+    There Gollmann attempts at a definition of Computer Security and
+    related terms, confidentiality, integrity, and availability, which
+    we need for our treatment of the topic.
+
+-   Chapter 1 of (Anderson 2008). Anderson treats a wider area than just
+    *computer* security, which is good for us, he covers many aspects of
+    security in different examples.
 
 Anderson, Ross J. 2008. *Security Engineering: A Guide to Building
 Dependable Distributed Systems*. 2nd ed. Indianapolis, IN: Wiley.

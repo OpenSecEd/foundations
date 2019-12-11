@@ -10,7 +10,8 @@ security.pdf: security.tex ${SRC}
 all: README.md
 
 README.md: video.md reading.md
-	${CAT} $^ > $@
+	echo "# What is security?" > $@
+	${CAT} $^ >> $@
 
 reading.md: abstract.tex
 	pandoc -s -t markdown_strict \

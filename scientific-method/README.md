@@ -1,3 +1,4 @@
+# The scientific method
 [![Video: The scientific 
 method](https://img.youtube.com/vi/tBzOSxQbWbI/hqdefault.jpg)](https://youtu.be/tBzOSxQbWbI)
 
@@ -10,10 +11,13 @@ of security.
 -   to *differentiate* which types of scientific methods are appropriate
     to answer a given question.
 
-*Reading:* You should read  (Peisert and Bishop 2007). This paper
-discusses the scientific method of (parts of) the security field. For a
-more in-depth reflection on the state of security as a scientific
-pursuit, we recommend  (Herley and Oorschot 2017).
+*Reading:* You should read
+
+-    (Peisert and Bishop 2007), this paper discusses the scientific
+    method of (parts of) the security field.
+
+-    (Herley and Oorschot 2017), for a more both wider and more in-depth
+    reflection on the state of security as a scientific pursuit.
 
 Herley, C., and P. C. v. Oorschot. 2017. “SoK: Science, Security and the
 Elusive Goal of Security as a Scientific Pursuit.” In *2017 Ieee
