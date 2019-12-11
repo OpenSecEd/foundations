@@ -1,4 +1,4 @@
-[![The scientific 
+[![Video: The scientific 
 method](https://img.youtube.com/vi/tBzOSxQbWbI/hqdefault.jpg)](https://youtu.be/tBzOSxQbWbI)
 
 *Summary:* In this learning session we will give an introduction to the
