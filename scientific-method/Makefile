@@ -17,5 +17,10 @@ reading.md: abstract.tex
 		-o $@ --bibliography scientific-method.bib $^
 
 
+.PHONY: clean
+clean:
+	${RM} scientific-method.pdf reading.md
+
+
 INCLUDE_MAKEFILES=../makefiles
 include ${INCLUDE_MAKEFILES}/tex.mk
