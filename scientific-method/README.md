@@ -1,5 +1,5 @@
 [![The scientific 
-method](https://youtu.be/tBzOSxQbWbI)](https://img.youtube.com/vi/tBzOSxQbWbI/hqdefault.jpg)
+method](https://img.youtube.com/vi/tBzOSxQbWbI/hqdefault.jpg)](https://youtu.be/tBzOSxQbWbI)
 
 *Summary:* In this learning session we will give an introduction to the
 scientific method and particularly how this can be applied in the area
