@@ -2,3 +2,6 @@
 	path = makefiles
 	url = https://github.com/dbosk/makefiles.git
 	branch = master
+[submodule "scientific-method"]
+	path = scientific-method
+	url = https://github.com/OpenSecEd/scientific-method.git
